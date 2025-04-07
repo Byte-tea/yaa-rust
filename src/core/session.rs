@@ -160,7 +160,31 @@ impl SessionData {
             messages: Vec::new(),
             config: Config {
                 yaa: YaaConfig::default(),
-                llm_api: LlmApiConfig::default(),
+                llm_api: LlmApiConfig {
+                    provider: ProviderConfig {
+                        api_url: "https://api.deepseek.com".into(),
+                        api_key: String::new(),
+                        model_name: "deepseek-chat".into(),
+                        model_type: ModelType {
+                            is_function_call: true,
+                            is_reasoning: true,
+                        },
+                        cost_per_ktoken: 0.002,
+                        cost_unit: "USD".into(),
+                        max_tokens: 4096,
+                        model_settings: ModelSettings {
+                            use_custom_temp: false,
+                            temperature: 0.7,
+                        },
+                    },
+                    stream: true,
+                    request_timeout: 30,
+                    interval: 1000,
+                    retry: RetryConfig {
+                        times: 3,
+                        delay: 1000,
+                    },
+                },
                 prompt: PromptConfig::default(),
                 tool: {
                     let mut tools = std::collections::HashMap::new();
@@ -180,6 +204,12 @@ impl SessionData {
             role,
             content: content.into(),
         });
+    }
+}
+
+impl Default for SessionData {
+    fn default() -> Self {
+        Self::new("", None)
     }
 }
 

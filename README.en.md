@@ -37,28 +37,15 @@ cp configs/ServerConfig.example.json ServerConfig.json
 Start in server mode:
 
 ```bash
-# TODO
+cargo run --release -- --serve --port 12345
 ```
 
 Start in interactive CLI mode:
 
 ```bash
-# TODO
+cargo run --release
 > Please write a bubble sort algorithm in Python.
 * Working on it...
-```
-
-Run single command:
-
-```bash
-# TODO
-* Working on it...
-```
-
-More usage:
-
-```bash
-# TODO
 ```
 
 ## Project Implementation

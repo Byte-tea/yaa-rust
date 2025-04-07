@@ -42,6 +42,18 @@ impl OpenAIClient {
     }
 }
 
+impl Default for OpenAIClient {
+    fn default() -> Self {
+        let api_key = std::env::var("OPENAI_API_KEY")
+            .unwrap_or_else(|_| "".to_string());
+        let base_url = std::env::var("OPENAI_API_BASE")
+            .ok()
+            .unwrap_or_else(|| "https://api.deepseek.com".to_string());
+        
+        Self::new(api_key, Some(base_url))
+    }
+}
+
 #[async_trait]
 impl OpenAIApi for OpenAIClient {
     async fn chat_completion(
@@ -62,7 +74,6 @@ impl OpenAIApi for &OpenAIClient {
         model: &str,
         temperature: f32,
     ) -> Result<String, ApiError> {
-        println!("[DEBUG] {:?}", messages);
         let response = self.client
             .post(format!("{}/v1/chat/completions", self.base_url))
             .header("Authorization", format!("Bearer {}", self.api_key))

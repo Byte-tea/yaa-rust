@@ -1,8 +1,8 @@
 # 任务
 
-1. 了解 `src\` 下所有模块。
+1. 了解 `src\` 下所有有必要模块，阅读 `configs/Config.example.json` 和 `Config.json`。
 2. 每一步都要用 cargo check 验证无误。
-3. 实现：监听 `0.0.0.0:12345` 端口，将收到的 JSON 数据解析为 SessionData，并交给智能体进行处理；返回智能体处理完数据转为的 JSON 数据。
+3. 实现参数：`--config （文件名）` 如 `--config ./configs/Config.example.json` 或 `--config ./Config.json` 用于指定默认配置的内容。
 4. 根据本任务更新 `Task.md`。
 
 ## 当前进展
@@ -22,6 +22,7 @@
 9. 实现"完成会话"工具
 10. 实现智能体回复数据结构（AgentResponseData 和 StreamResponseData）
 11. 实现智能体核心逻辑模块
+12. 实现命令行参数解析(--serve和--port参数)
 
 目录：
 
@@ -40,13 +41,9 @@ src/
 │   ├── session.rs       # 会话数据的结构和智能体响应数据的结构定义
 │   ├── tool.rs          # 定义工具框架基础结构和接口
 │   └── prompt.rs        # 提示词生成器
-├── web/                 # TODO WASM 相关
-│   ├── mod.rs           # TODO WASM 入口
-│   ├── bindings.rs      # TODO JS 绑定
-│   └── worker.rs        # TODO Web Worker 支持
-└── cli/                 # TODO 命令行模式
-    ├── mod.rs           # TODO CLI 入口
-    └── commands.rs      # TODO 子命令实现
+└── cli/                 # 命令行模式(部分实现)
+    ├── mod.rs           # CLI 入口(待完善)
+    └── commands.rs      # 子命令实现(待完善)
 ```
 
 ## 项目核心逻辑

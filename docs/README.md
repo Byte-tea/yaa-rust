@@ -190,3 +190,7 @@ pub struct StreamResponseData {
 ## 流程分析
 
 - [流程分析](FlowAnalyze/FlowAnalyze.md)
+
+## 新工具
+
+- [贡献新工具](new_tools.md)
